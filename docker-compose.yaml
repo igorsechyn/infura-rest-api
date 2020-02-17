@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./
+      args:
+        binary_name: $BINARY_NAME
+        main_pkg: $MAIN_PKG
+    environment:
+      - ETHEREUM_API_INFURA_PROJECT_ID=some-id
+      - ETHEREUM_API_INFURA_BASE_URL=http://infura-api:8081
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - "infura-api" 
+  infura-api:
+    build:
+      context: ./test/e2e/infura
+    ports: 
+      - "8081:8081"      

@@ -1,0 +1,48 @@
+config:
+  target: "{{ $processEnvironment.ETHEREUM_API_BASE_URL }}"
+  http:
+    pool: 30
+  variables:
+    blockNumber:
+      - "7202234"
+      - "7202235"
+      - "7202236"
+      - "7202237"
+      - "7202238"
+      - "7202239"
+      - "7202240"
+      - "7202241"
+      - "7202242"
+      - "7202243"
+      - "7202244"
+      - "7202245"
+      - "7202246"
+      - "7202247"
+      - "7202248"
+      - "7202249"
+      - "7202250"
+      - "7202251"
+      - "7202252"
+      - "7202253"
+      - "7202254"
+      - "7202255"
+      - "7202256"
+      - "7202257"
+      - "7202258"
+      - "7202259"
+      - "7202260"
+      - "7202261"
+      - "7202262"
+      - "7202263"
+  phases:
+    - duration: 60
+      arrivalRate: 10
+      rampTo: 30
+      name: "Warm up the application"
+    - duration: 300
+      arrivalRate: 30
+      name: "Sustained max load"
+scenarios:
+  - flow:
+      - get:
+          url: "/transactions/blockNumber/{{ blockNumber }}/index/0"
